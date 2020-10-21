@@ -1,11 +1,9 @@
-﻿using BattleCards.Data;
+﻿using SharedTrip2.Data;
 using System.Linq;
-using Microsoft.EntityFrameworkCore.Internal;
-using System.Text;
 using System.Security.Cryptography;
-using SUS.MvcFramework;
+using System.Text;
 
-namespace BattleCards.Services
+namespace SharedTrip2.Services
 {
     public class UsersService : IUsersService
     {
@@ -16,33 +14,23 @@ namespace BattleCards.Services
             this.db = db;
         }
 
-        public string CreateUser(string username, string email, string password)
+        public void CreateUser(string username, string email, string password)
         {
             var user = new User
             {
-                Username = username,
                 Email = email,
-                Role = IdentityRole.User,
+                Username = username,
                 Password = ComputeHash(password),
             };
-
             this.db.Users.Add(user);
-
             this.db.SaveChanges();
-
-            return user.Id;
         }
 
         public string GetUserId(string username, string password)
         {
-            var user = this.db.Users.FirstOrDefault(x => x.Username == username);
-
-            if (user?.Password != ComputeHash(password))
-            {
-                return null;
-            }
-            
-            return user.Id;
+            var passwordHash = ComputeHash(password);
+            var user = this.db.Users.FirstOrDefault(x => x.Username == username && x.Password == passwordHash);
+            return user?.Id;
         }
 
         public bool IsEmailAvailable(string email)
@@ -58,20 +46,13 @@ namespace BattleCards.Services
         private static string ComputeHash(string input)
         {
             var bytes = Encoding.UTF8.GetBytes(input);
-
             using var hash = SHA512.Create();
-
             var hashedInputBytes = hash.ComputeHash(bytes);
-
             // Convert to text
             // StringBuilder Capacity is 128, because 512 bits / 8 bits in byte * 2 symbols for byte 
             var hashedInputStringBuilder = new StringBuilder(128);
-
             foreach (var b in hashedInputBytes)
-            {
                 hashedInputStringBuilder.Append(b.ToString("X2"));
-            }
-
             return hashedInputStringBuilder.ToString();
         }
     }

@@ -10,9 +10,8 @@ namespace Suls.Controllers
         private readonly IProblemsService problemsService;
         private readonly ISubmissionsService submissionsService;
 
-        public SubmissionsController(
-            IProblemsService problemsService,
-            ISubmissionsService submissionsService)
+        public SubmissionsController(IProblemsService problemsService,
+                                  ISubmissionsService submissionsService)
         {
             this.problemsService = problemsService;
             this.submissionsService = submissionsService;
@@ -30,6 +29,7 @@ namespace Suls.Controllers
                 ProblemId = id,
                 Name = this.problemsService.GetNameById(id),
             };
+
             return this.View(viewModel);
         }
 
@@ -47,7 +47,9 @@ namespace Suls.Controllers
             }
 
             var userId = this.GetUserId();
+
             this.submissionsService.Create(problemId, userId, code);
+
             return this.Redirect("/");
         }
 
@@ -59,6 +61,7 @@ namespace Suls.Controllers
             }
 
             this.submissionsService.Delete(id);
+
             return this.Redirect("/");
         }
     }

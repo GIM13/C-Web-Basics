@@ -36,12 +36,14 @@ namespace BattleCards.Controllers
             }
 
             var userId = this.usersService.GetUserId(username, password);
+
             if (userId == null)
             {
                 return this.Error("Invalid username or password");
             }
 
             this.SignIn(userId);
+
             return this.Redirect("/Cards/All");
         }
 
@@ -100,6 +102,7 @@ namespace BattleCards.Controllers
             }
 
             this.usersService.CreateUser(input.Username, input.Email, input.Password);
+
             return this.Redirect("/Users/Login");
         }
 
@@ -111,6 +114,7 @@ namespace BattleCards.Controllers
             }
 
             this.SignOut();
+
             return this.Redirect("/");
         }
     }

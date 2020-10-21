@@ -21,6 +21,7 @@ namespace Suls.Controllers
             if (this.IsUserSignedIn())
             {
                 var viewModel = this.problemsService.GetAll();
+
                 return this.View(viewModel, "IndexLoggedIn");
             }
             else

@@ -108,6 +108,7 @@ namespace SharedTrip.Controllers
             }
 
             this.tripsService.Create(input);
+
             return this.Redirect("/Trips/All");
         }
     }

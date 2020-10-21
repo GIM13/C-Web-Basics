@@ -70,8 +70,11 @@ namespace BattleCards.Controllers
             }
 
             var cardId = this.cardsService.AddCard(model);
+
             var userId = this.GetUserId();
+
             this.cardsService.AddCardToUserCollection(userId, cardId);
+
             return this.Redirect("/Cards/All");
         }
 
@@ -84,6 +87,7 @@ namespace BattleCards.Controllers
             }
 
             var cardsViewModel = this.cardsService.GetAll();
+
             return this.View(cardsViewModel);
         }
 
@@ -95,6 +99,7 @@ namespace BattleCards.Controllers
             }
 
             var viewModel = this.cardsService.GetByUserId(this.GetUserId());
+
             return this.View(viewModel);
         }
 
@@ -106,7 +111,9 @@ namespace BattleCards.Controllers
             }
 
             var userId = this.GetUserId();
+
             this.cardsService.AddCardToUserCollection(userId, cardId);
+
             return this.Redirect("/Cards/All");
         }
 
@@ -118,7 +125,9 @@ namespace BattleCards.Controllers
             }
 
             var userId = this.GetUserId();
+
             this.cardsService.RemoveCardFromUserCollection(userId, cardId);
+
             return this.Redirect("/Cards/Collection");
         }
     }

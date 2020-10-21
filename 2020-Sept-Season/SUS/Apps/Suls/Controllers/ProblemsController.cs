@@ -45,6 +45,7 @@ namespace Suls.Controllers
             }
 
             this.problemsService.Create(name, (ushort)points);
+
             return this.Redirect("/");
         }
 
@@ -55,7 +56,8 @@ namespace Suls.Controllers
                 return this.Redirect("/Users/Login");
             }
 
-            var viewModel = this.problemsService.GetById(id);
+            var viewModel = this.problemsService.GetById(id); 
+
             return this.View(viewModel);
         }
     }

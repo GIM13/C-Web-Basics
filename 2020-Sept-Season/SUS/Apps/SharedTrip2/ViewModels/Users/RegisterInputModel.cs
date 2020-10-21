@@ -1,4 +1,6 @@
-﻿namespace Suls.ViewModels.Users
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SharedTrip2.ViewModels.Users
 {
     public class RegisterInputModel
     {

@@ -1,10 +1,10 @@
-﻿using Suls.Services;
-using Suls.ViewModels.Users;
+﻿using SharedTrip2.Services;
+using SharedTrip2.ViewModels.Users;
 using SUS.HTTP;
 using SUS.MvcFramework;
 using System.ComponentModel.DataAnnotations;
 
-namespace Suls.Controllers
+namespace SharedTrip2.Controllers
 {
     public class UsersController : Controller
     {
@@ -29,14 +29,12 @@ namespace Suls.Controllers
         public HttpResponse Login(string username, string password)
         {
             var userId = this.usersService.GetUserId(username, password);
-
             if (userId == null)
             {
                 return this.Error("Invalid username or password.");
             }
 
             this.SignIn(userId);
-
             return this.Redirect("/");
         }
 
@@ -63,8 +61,7 @@ namespace Suls.Controllers
                 return this.Error("Username already taken.");
             }
 
-            if (string.IsNullOrEmpty(input.Email) 
-                || !new EmailAddressAttribute().IsValid(input.Email))
+            if (string.IsNullOrEmpty(input.Email) || !new EmailAddressAttribute().IsValid(input.Email))
             {
                 return this.Error("Invalid email address.");
             }
@@ -74,9 +71,7 @@ namespace Suls.Controllers
                 return this.Error("Email already taken.");
             }
 
-            if (string.IsNullOrEmpty(input.Password) 
-                || input.Password.Length < 6 
-                || input.Password.Length > 20)
+            if (string.IsNullOrEmpty(input.Password) || input.Password.Length < 6 || input.Password.Length > 20)
             {
                 return this.Error("Password should be between 6 and 20 charaters.");
             }
@@ -86,8 +81,7 @@ namespace Suls.Controllers
                 return this.Error("Passwords do not match.");
             }
 
-            this.usersService.CreateUser(input.Username, input.Email, input.Password); 
-
+            this.usersService.CreateUser(input.Username, input.Email, input.Password);
             return this.Redirect("/Users/Login");
         }
 
@@ -99,7 +93,6 @@ namespace Suls.Controllers
             }
 
             this.SignOut();
-
             return this.Redirect("/");
         }
     }

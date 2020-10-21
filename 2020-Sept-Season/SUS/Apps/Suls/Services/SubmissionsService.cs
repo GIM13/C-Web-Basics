@@ -18,8 +18,8 @@ namespace Suls.Services
         public void Create(string problemId, string userId, string code)
         {
             var problemMaxPoints = this.db.Problems
-                .Where(x => x.Id == problemId)
-                .Select(x => x.Points).FirstOrDefault();
+                                          .Where(x => x.Id == problemId)
+                                          .Select(x => x.Points).FirstOrDefault();
             var submission = new Submission
             {
                 Code = code,
@@ -28,14 +28,18 @@ namespace Suls.Services
                 AchievedResult = (ushort)this.random.Next(0, problemMaxPoints + 1),
                 CreatedOn = DateTime.UtcNow,
             };
+
             this.db.Submissions.Add(submission);
+
             this.db.SaveChanges();
         }
 
         public void Delete(string id)
         {
             var submission = this.db.Submissions.Find(id);
+
             this.db.Submissions.Remove(submission);
+
             this.db.SaveChanges();
         }
     }
