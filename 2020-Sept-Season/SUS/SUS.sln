@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Suls", "Apps\Suls\Suls.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedTrip", "Apps\SharedTrip\SharedTrip.csproj", "{64D06F06-38BD-49AE-8B74-BA7A314F7476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedTrip2", "Apps\SharedTrip2\SharedTrip2.csproj", "{DC167B43-8CB4-4946-B965-EBED15B13BAF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,10 +47,6 @@ Global
 		{64D06F06-38BD-49AE-8B74-BA7A314F7476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64D06F06-38BD-49AE-8B74-BA7A314F7476}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64D06F06-38BD-49AE-8B74-BA7A314F7476}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC167B43-8CB4-4946-B965-EBED15B13BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC167B43-8CB4-4946-B965-EBED15B13BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC167B43-8CB4-4946-B965-EBED15B13BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC167B43-8CB4-4946-B965-EBED15B13BAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

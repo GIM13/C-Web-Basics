@@ -24,6 +24,7 @@ namespace SharedTrip.Controllers
             }
 
             var trips = this.tripsService.GetAll();
+
             return this.View(trips);
         }
 
